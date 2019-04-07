@@ -331,7 +331,9 @@ triggerEvent = (name, data) ->
   event = document.createEvent 'Events'
   event.data = data if data
   event.initEvent name, true, true
-  document.dispatchEvent event
+  setTimeout =>
+    document.dispatchEvent event
+  , 100
 
 pageChangePrevented = (url) ->
   !triggerEvent EVENTS.BEFORE_CHANGE, url: url
